@@ -1,7 +1,7 @@
 from .base import *
 
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -21,3 +21,7 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+if 'CHANGE THIS' in SECRET_KEY:
+    raise Exception('You must change settings.SECRET_KEY')
+
