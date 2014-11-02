@@ -22,21 +22,17 @@ First, get cookiecutter. Trust me, it's awesome::
 
 Set up your virtualenv::
 
-    $ cd <your-envs-folder>
-    $ virtualenv  --no-site-packages redditclone
-    $ cd redditclone
-    $ source bin/activate
+    $ cd ~/Projects
+    $ mkvirtualenv myproject -a myproject
     $ pip install cookiecutter
 
 Now run it against this repo::
 
-    $ cd <your-workspace>
-    $ cookiecutter  https://github.com/marcofucci/cookiecutter-simple-django.git
+    $ git clone https://github.com/mattoc/cookiecutter-simple-django.git
+    $ cookiecutter cookiecutter-simple-django
 
 You'll be prompted for some questions, answer them, then it will create a Django project for you.
 
-
-**Warning**: After this point, change 'Marco Fucci', etc to your own information.
 
 It prompts you for questions. Answer them::
 
@@ -46,23 +42,17 @@ It prompts you for questions. Answer them::
     remote: Total 443 (delta 196), reused 419 (delta 176)
     Receiving objects: 100% (443/443), 119.91 KiB | 0 bytes/s, done.
     Resolving deltas: 100% (196/196), done.
-    project_name (default is "project_name")? redditclone
-    repo_name (default is "repo_name")? redditclone
-    author_name (default is "Your Name")? Marco Fucci
+    project_name (default is "project_name")? myproject
+    repo_name (default is "repo_name")? myapp
+    author_name (default is "Your Name")? Your Name
     email (default is "Your email")? <your-email>
-    description (default is "A short description of the project.")? A reddit clone
-    year (default is "Current year")? 2013
-    with_documentation (default is "yes")? yes
-
-If you are using cookiecutter < 0.7 and you answered *no* to *with_documentation*, you might want to delete the ``docs`` 
-folder. 
-From version 0.7+, that folder is automatically deleted for you.
+    description (default is "A short description of the project.")? My app
+    year (default is "Current year")? 2014
 
 
-Create the database ``redditclone`` and then set up your project::
+Create the database ``myapp`` and then set up your project::
 
-    $ cd redditclone/
-    $ ls
+    $ cd myapp/
     $ pip install -r requirements/local.txt
     $ python ./manage.py syncdb
     $ python ./manage.py migrate
@@ -70,26 +60,7 @@ Create the database ``redditclone`` and then set up your project::
 
 and load localhost:8000/admin
 
-
-Create a GitHub repo and push it there::
-
-    $ git init
-    $ git add .
-    $ git commit -m "first awesome commit!"
-    $ git remote add origin git@github.com:marcofucci/redditclone.git
-    $ git push -u origin master
-
-**Note**: The ``requirements`` files don't define any package versions because it makes
-more sense for you to use the latest ones when you set up your
-project. After that point though, you really want to take note of the specific
-versions installed so that they are not going to get updated without you knowing it.
-
-In order to do this, just activate your virtual environment, pip freeze it and
-update your requirements files::
-
-    $ activate <your-envs-folder>/redditclone/bin/activate
-    $ pip freeze
-    $ # now open requirements/* and note down the versions used.
+A git repo will be created for you by a post-setup hook.
 
 
 Structure
